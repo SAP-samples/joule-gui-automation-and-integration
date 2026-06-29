@@ -1,0 +1,8 @@
+schema_version: 3.29.0
+
+metadata:
+  namespace: com.sap.das.demo
+  name: execute_guided_script
+  version: 1.0.0
+  display_name: "Create product (Step-by-Step)"
+  description: Creates a product step-by-step with user confirmation before each server roundtrip, allowing you to review and modify values at each step.

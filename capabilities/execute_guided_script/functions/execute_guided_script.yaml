@@ -1,0 +1,78 @@
+action_groups:
+  - actions:
+      - type: status-update
+        message: "Starting guided script execution..."
+      - type: frontend-action
+        name: com.sap.uic.unified.frontend.actions.executeGuidedScript
+        parameters:
+          - name: script
+            value: >
+              var productId = "HT-" + (1000 + Math.floor(Math.random() * 9000));
+
+              session.findById("wnd[0]/usr/ctxtGV_PRODUCT_ID").text = productId;
+
+              session.findById("wnd[0]/usr/btnCREATE").press();
+
+              var sub = "wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1"
+                      + "/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301";
+
+              session.findById(sub + "/txtSEPM_PRODUCT_HEADER_200-PRODUCT_NAME").text      = "Test Product " + productId;
+              session.findById(sub + "/txtSEPM_PRODUCT_HEADER_200-PRODUCT_DESC").text      = "Auto-generated test product";
+              session.findById(sub + "/ctxtSEPM_PRODUCT_HEADER_200-TYPE_CODE").text        = "PR";
+              session.findById(sub + "/ctxtSEPM_PRODUCT_HEADER_200-CATEGORY").text         = "Notebooks";
+              session.findById(sub + "/ctxtSEPM_PRODUCT_HEADER_200-MEASURE_UNIT").text     = "EA";
+              session.findById(sub + "/ctxtSEPM_PRODUCT_HEADER_200-SUPPLIER_ID").text      = "100000046";
+              session.findById(sub + "/ctxtSEPM_PRODUCT_HEADER_200-TAX_TARIF_CODE").text   = "1";
+              session.findById(sub + "/txtSEPM_PRODUCT_HEADER_200-PRICE").text             = "549,00";
+              session.findById(sub + "/ctxtSEPM_PRODUCT_HEADER_200-CURRENCY_CODE").text    = "EUR";
+              session.findById(sub + "/txtSEPM_PRODUCT_HEADER_200-WEIGHT_MEASURE").text    = "2.200";
+              session.findById(sub + "/ctxtSEPM_PRODUCT_HEADER_200-WEIGHT_UNIT").text      = "KG";
+              session.findById(sub + "/ctxtSEPM_PRODUCT_HEADER_200-DIM_UNIT").text         = "CM";
+              session.findById(sub + "/txtSEPM_PRODUCT_HEADER_200-WIDTH").text             = "30,00";
+              session.findById(sub + "/txtSEPM_PRODUCT_HEADER_200-DEPTH").text             = "2,00";
+              session.findById(sub + "/txtSEPM_PRODUCT_HEADER_200-HEIGHT").text            = "21,00";
+              session.findById(sub + "/txtSEPM_PRODUCT_HEADER_200-PRODUCT_PIC_URL").text   = "https://example.com/products/" + productId + ".jpg";
+
+              var tab2 = "wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC2";
+              var sub2 = tab2 + "/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0302";
+              var tbl  = sub2 + "/tblRS_EPM_PRODUCT_CLASSIC_DYNPROCONV_FACTORS";
+
+              session.findById(tab2).select();
+
+              session.findById(sub2 + "/btnCONV_FACTORS_ADD_ROW").press();
+
+              session.findById(tbl + "/txtGS_CONVERSION_FACTOR-INCLUDE-SOURCE_UNIT[0,0]").text  = "EA";
+              session.findById(tbl + "/txtGS_CONVERSION_FACTOR-INCLUDE-TARGET_UNIT[1,0]").text   = "KG";
+              session.findById(tbl + "/txtGS_CONVERSION_FACTOR-INCLUDE-NUMERATOR[2,0]").text     = "1";
+              session.findById(tbl + "/txtGS_CONVERSION_FACTOR-INCLUDE-DENOMINATOR[3,0]").text   = "1";
+        result_variable: scriptStart
+      - type: user-confirmation
+        content:
+          title: "SAP GUI Script in Progress"
+          subtitle: "The SAP GUI script is still running in the background. Please wait until the execution completes, then click OK to continue."
+          button_labels:
+            confirm: "OK"
+            cancel: "Cancel"
+        confirmation_variable: scriptWaitConfirmation
+
+  # Script completed successfully
+  - condition: scriptStart.content.success == true
+    actions:
+      - type: status-update
+        message: "Script completed successfully. Processing results..."
+      - type: set-variables
+        variables:
+          - name: finalResult
+            value: <? scriptStart.content ?>
+
+  # Script failed
+  - condition: scriptStart.content.success != true
+    actions:
+      - type: message
+        message:
+          type: text
+          content: "The SAP GUI script did not complete successfully."
+
+result:
+  success: <? scriptStart.content.success ?>
+  finalResult: <? finalResult ?>

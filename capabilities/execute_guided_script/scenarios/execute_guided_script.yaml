@@ -1,0 +1,14 @@
+description: >
+  Creates a product in transaction SEPM_PD using ExecuteGuidedScript (step-by-step with user confirmation).
+  The script enters a random product ID, fills all Header Data fields, switches to
+  the Conversion Factors tab and adds a row. The user is prompted before each server roundtrip.
+  After execution, DescribeUI is called and an agent validates the result.
+
+title: Create Product (Guided Script)
+
+conversation_starter:
+  trigger_utterance: "Create product"
+
+target:
+  type: function
+  name: execute_guided_script
