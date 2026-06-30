@@ -1,0 +1,14 @@
+action_groups:
+  - actions:
+      - type: frontend-action
+        name: com.sap.uic.unified.frontend.actions.describeUI
+        parameters:
+          - name: root_element_id
+            value: "wnd[0]"
+          - name: properties
+            value: '["id", "type", "text", "tooltip", "leftLabel", "changeable"]'
+        result_variable: describeUIResult
+
+result:
+  status: <? describeUIResult.status ?>
+  content: <? describeUIResult.content ?>

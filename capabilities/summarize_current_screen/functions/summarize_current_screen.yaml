@@ -1,0 +1,10 @@
+action_groups:
+  - actions:
+      - type: agent-request
+        agent: screen_summarizer
+        result_variable: agentResponse
+      - type: message
+        message:
+          type: text
+          markdown: true
+          content: "<? agentResponse.body.content ?>"
