@@ -1,7 +1,7 @@
 action_groups:
   - actions:
       - type: agent-request
-        agent: screen_summarizer
+        name: screen_summarizer
         result_variable: agentResponse
       - type: message
         message:

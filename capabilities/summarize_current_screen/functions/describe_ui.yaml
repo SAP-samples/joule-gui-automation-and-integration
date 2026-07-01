@@ -8,6 +8,10 @@ action_groups:
           - name: properties
             value: '["id", "type", "text", "tooltip", "leftLabel", "changeable"]'
         result_variable: describeUIResult
+      - type: message
+        message:
+          type: text
+          content: "<? describeUIResult.content ?>"
 
 result:
   status: <? describeUIResult.status ?>

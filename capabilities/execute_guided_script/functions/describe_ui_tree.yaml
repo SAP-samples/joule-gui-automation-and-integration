@@ -6,6 +6,10 @@ action_groups:
         - name: id
           value: "wnd[0]/usr"
         result_variable: describeUIResult
+      - type: message
+        message:
+          type: text
+          content: "<? describeUIResult.content ?>"
 
 result:
   status: <? describeUIResult.status ?>

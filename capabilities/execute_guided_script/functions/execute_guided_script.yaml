@@ -54,25 +54,33 @@ action_groups:
             confirm: "OK"
             cancel: "Cancel"
         confirmation_variable: scriptWaitConfirmation
-
+      - type: message
+        message:
+            type: text
+            content: "<?scriptStart?>"
+            # {"content":{"result":null,"success":true},"status":"success"}
   # Script completed successfully
-  - condition: scriptStart.content.success == true
-    actions:
-      - type: status-update
-        message: "Script completed successfully. Processing results..."
-      - type: set-variables
-        variables:
-          - name: finalResult
-            value: <? scriptStart.content ?>
-
-  # Script failed
-  - condition: scriptStart.content.success != true
+  - condition: scriptStart.content.success == true && scriptStart.status == "success"
     actions:
       - type: message
         message:
           type: text
-          content: "The SAP GUI script did not complete successfully."
+          content: "Script completed successfully. Processing results..."
+      
+  # Script failed
+  - condition: scriptStart.content.success != true || scriptStart.status != "success"
+    actions:
+      - type: message
+        message:
+          type: text
+          content: "The SAP GUI script did not complete successfully. Script result: <? scriptStart ?>"
+  # - condition: scriptStart.content.code == "timeout"
+  #   actions:
+  #     - type: message
+  #       message:
+  #         type: text
+  #         content: "frontend action timeout. Script result: <? scriptStart ?>"
 
 result:
   success: <? scriptStart.content.success ?>
-  finalResult: <? finalResult ?>
+  finalResult: <? scriptStart.content ?>
