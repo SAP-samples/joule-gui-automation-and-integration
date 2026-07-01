@@ -1,0 +1,8 @@
+schema_version: 3.29.0
+
+metadata:
+  namespace: com.sap.das.demo
+  display_name: "Summarize current screen"
+  name: summarize_current_screen
+  version: 1.0.0
+  description: Fast summary of the entire current SAP GUI screen via the describeUI frontend action. No user input required. Returns readable markdown listing screen title, fields, tabs, and buttons. Tables and tree contents are not expanded.
