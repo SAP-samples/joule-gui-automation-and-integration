@@ -1,10 +1,12 @@
 action_groups:
   - actions:
       - type: agent-request
-        agent: screen_summarizer
+        name: screen_summarizer
+        body:
+          message: "Summarize the SAP GUI screen"
         result_variable: agentResponse
       - type: message
         message:
           type: text
           markdown: true
-          content: "<? agentResponse.body.content ?>"
+          content: "<? agentResponse.body.message ?>"
