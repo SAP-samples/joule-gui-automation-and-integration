@@ -12,10 +12,6 @@ missing_input_tool_enabled: false
 base_model: gpt-4o
 advanced_model: gpt-4o
 
-parameters:
-  - name: root_element_id
-    description: SAP GUI root element ID to describe (e.g. "wnd[0]", "wnd[0]/usr", or a container path).
-
 task: >
   You will summarize a chosen area of the current SAP GUI screen.
 
@@ -63,4 +59,4 @@ toolkits:
           - name: root_element_id
             description: SAP GUI root element ID (e.g. "wnd[0]", "wnd[0]/usr", or a container path)
             type: string
-            required: true
+            

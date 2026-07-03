@@ -58,29 +58,48 @@ action_groups:
         message:
             type: text
             content: "<?scriptStart?>"
-            # {"content":{"result":null,"success":true},"status":"success"}
   # Script completed successfully
-  - condition: scriptStart.content.success == true && scriptStart.status == "success"
+  - condition: scriptStart.content.success == true
     actions:
       - type: message
         message:
           type: text
-          content: "Script completed successfully. Processing results..."
-      
+          content: "text Script completed successfully. Processing results..."
+          
+      - type: set-variables
+        variables:
+          - name: finalResult
+            value: <? scriptStart.content ?>
+
+      - type: message
+        message:
+          type: text
+          content: "call agent"
+      - type: agent-request
+        name: guided_script_validation_agent
+        body:          
+          message: "Verify script result"
+        result_variable: validationResult
+      - type: message
+        message:
+          type: text
+          content: "<? validationResult.body.content ?>"
+
   # Script failed
-  - condition: scriptStart.content.success != true || scriptStart.status != "success"
+  - condition: scriptStart.content.success != true
     actions:
       - type: message
         message:
           type: text
-          content: "The SAP GUI script did not complete successfully. Script result: <? scriptStart ?>"
-  # - condition: scriptStart.content.code == "timeout"
-  #   actions:
-  #     - type: message
-  #       message:
-  #         type: text
-  #         content: "frontend action timeout. Script result: <? scriptStart ?>"
+          content: "The SAP GUI script did not complete successfully."
+
+  - condition: scriptStart.content.code == "timeout"
+    actions:
+      - type: message
+        message:
+          type: text
+          content: "frontend action timeout. Script result: <? scriptStart ?>"
 
 result:
   success: <? scriptStart.content.success ?>
-  finalResult: <? scriptStart.content ?>
+  finalResult: <? finalResult ?>

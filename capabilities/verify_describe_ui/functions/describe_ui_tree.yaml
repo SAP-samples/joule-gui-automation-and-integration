@@ -1,0 +1,16 @@
+action_groups:
+  - actions:
+      - type: frontend-action
+        name: com.sap.uic.unified.frontend.actions.describeUI
+        parameters:
+        - name: id
+          value: "wnd[0]/usr"
+        result_variable: describeUIResult
+      - type: message
+        message:
+          type: text
+          content: "<? describeUIResult.content ?>"
+
+result:
+  status: <? describeUIResult.status ?>
+  content: <? describeUIResult.content ?>

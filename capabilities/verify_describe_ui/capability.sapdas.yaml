@@ -1,0 +1,12 @@
+schema_version: 3.29.0
+
+metadata:
+  namespace: com.sap.das.demo
+  name: verify_describe_ui
+  version: 1.0.0
+  display_name: "Verify Describe UI"
+  description: Verifies the describe UI functionality by comparing the UI tree from describeUI against a reference UI tree using an agent.
+
+system_aliases:
+  AOKExtractAgent:
+    destination: AOKExtractAgent

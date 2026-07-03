@@ -1,0 +1,8 @@
+schema_version: 3.29.0
+
+metadata:
+  namespace: com.sap.das.demo
+  name: agent_test
+  version: 1.0.0
+  display_name: "Agent Test"
+  description: A test capability that uses an agent to summarize the current SAP GUI screen.

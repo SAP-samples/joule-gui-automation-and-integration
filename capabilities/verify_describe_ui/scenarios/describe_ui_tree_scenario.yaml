@@ -1,0 +1,8 @@
+description: This scenario calls the describe UI functionality 
+target:
+  type: function
+  name: describe_ui_tree
+
+conversation_starter:
+  title: Call Describe UI 
+  trigger_utterance: Call describe UI 

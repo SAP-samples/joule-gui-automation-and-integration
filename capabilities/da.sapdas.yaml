@@ -1,0 +1,17 @@
+schema_version: 1.4.0
+name: d043074_frontend_actions_2
+capabilities:
+  # - type: local
+  #   folder: ./summarize_current_screen
+  - type: local
+    folder: ./summarize_screen_area
+  # - type: local
+  #   folder: ./execute_guided_script
+  # - type: local
+  #   folder: ./test_capability
+  # - type: local
+  #   folder: ./verify_describe_ui
+  - type: local
+    folder: ./agent_test
+
+

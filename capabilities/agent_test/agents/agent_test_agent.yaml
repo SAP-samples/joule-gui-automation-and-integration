@@ -1,0 +1,35 @@
+agent: agent_test_agent
+expert_in: >
+  You are an expert in parsing SAP GUI screen descriptions (describeUI JSON output) and
+  formatting them into clear, readable markdown text for end users.
+
+iterations: 5
+preprocessing_enabled: true
+postprocessing_enabled: true
+missing_input_tool_enabled: false
+
+base_model: anthropic--claude-4.5-haiku
+advanced_model: anthropic--claude-4.5-haiku
+
+task: >
+  Follow these steps in order:
+
+  1. Take the following json containing  SAP GUI screen elements:  {\"children\":[{\"properties\":{\"Id\":\"\\/wnd[0]\\/usr\",\"Type\":\"GuiUserArea\",\"Changeable\":\"true\"},\"children\":[{\"properties\":{\"Id\":\"\\/wnd[0]\\/usr\\/lblPRODUCT_ID_TEXT\",\"Text\":\"Product ID\",\"Type\":\"GuiLabel\"}},{\"properties\":{\"Id\":\"\\/wnd[0]\\/usr\\/ctxtGV_PRODUCT_ID\",\"Type\":\"GuiCTextField\",\"Changeable\":\"true\",\"LeftLabel\":\"\\/app\\/con[0]\\/ses[0]\\/wnd[0]\\/usr\\/lblPRODUCT_ID_TEXT\"}},{\"properties\":{\"Id\":\"\\/wnd[0]\\/usr\\/btnCREATE\",\"Text\":\" Create\",\"Selected\":\"false\",\"Type\":\"GuiButton\",\"Tooltip\":\"Create\",\"Changeable\":\"true\"}},{\"properties\":{\"Id\":\"\\/wnd[0]\\/usr\\/btnDISPLAY\",\"Text\":\" Display\",\"Selected\":\"false\",\"Type\":\"GuiButton\",\"Tooltip\":\"Display\",\"Changeable\":\"true\"}},{\"properties\":{\"Id\":\"\\/wnd[0]\\/usr\\/btnDELETE\",\"Text\":\" Delete\",\"Selected\":\"false\",\"Type\":\"GuiButton\",\"Tooltip\":\"Delete\",\"Changeable\":\"true\"}}]}]}
+
+  2. Format the tree into a readable markdown summary following these rules:
+
+     - Screen Title: Start with a bold header showing the screen/window title.
+     - Tabs: If tabs exist (Type: GuiTab or GuiTabStrip), list the tab names in one line,
+       marking the active tab with bold.
+     - Field Values: For each input field (GuiTextField, GuiCTextField, GuiComboBox) with
+       a non-empty Text value, show as **Label**: Value. Use LeftLabel if available,
+       otherwise Tooltip, otherwise derive a readable name from the Id.
+     - Buttons: Mention important buttons with their Tooltip in parentheses, separated
+       by " | ".
+     - Skip empty fields, labels without associated values, custom controls, shell
+       containers, and purely structural containers unless they contain meaningful content.
+     - Language: Output in the same language as the field labels.
+     - Brevity: Keep the output concise. Do not repeat IDs or technical paths.
+
+  Return ONLY the formatted markdown text. No code fences, no explanations.
+

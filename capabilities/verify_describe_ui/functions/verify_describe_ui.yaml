@@ -1,0 +1,99 @@
+action_groups:
+  # Step 1: Get current UI tree via describeUI frontend action
+  - actions:
+      - type: frontend-action
+        name: com.sap.uic.unified.frontend.actions.describeUI
+        parameters:
+        - name: id
+          value: "wnd[0]/usr"
+        result_variable: describeUIResult
+      - type: set-variables
+        variables:
+          - name: currentTree
+            value: <? describeUIResult.content ?>
+
+  # Step 2: Set reference tree
+  - actions:
+      - type: set-variables
+        variables:
+          - name: referenceTree
+            value: '{"children":[{"properties":{"Id":"/wnd[0]/usr","Type":"GuiUserArea","Changeable":"true"},"children":[{"properties":{"Id":"/wnd[0]/usr/lblPRODUCT_ID_TEXT","Text":"Product ID","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/ctxtSEPM_PRODUCT_HEADER_200-PRODUCT_ID","Text":"HT-1001","Type":"GuiCTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/lblPRODUCT_ID_TEXT"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB","Type":"GuiTabStrip","Changeable":"true"},"children":[{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1","Text":"Header Data","Type":"GuiTab","Changeable":"true"},"children":[{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301","Type":"GuiScrollContainer","Changeable":"true"},"children":[{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT012","Text":"Product Name","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/txtSEPM_PRODUCT_HEADER_200-PRODUCT_NAME","Text":"Notebook Basic 17","Type":"GuiTextField"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT013","Text":"Description","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/txtSEPM_PRODUCT_HEADER_200-PRODUCT_DESC","Text":"Notebook Basic 17 with 2,80 GHz quad core, 17" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro","Type":"GuiTextField"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT002","Text":"Product Type Code","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-TYPE_CODE","Text":"PR","Type":"GuiCTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT002"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT003","Text":"Product Category","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-CATEGORY","Text":"Notebooks","Type":"GuiCTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT003"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT006","Text":"Measure Unit","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-MEASURE_UNIT","Text":"EA","Type":"GuiCTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT006"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT014","Text":"Supplier-ID","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-SUPPLIER_ID","Text":"100000047","Type":"GuiCTextField"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT017","Text":"Supplier name","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-SUPPLIER_NAME","Text":"Becker Berlin","Type":"GuiCTextField"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT004","Text":"Tax Tariff Code","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-TAX_TARIF_CODE","Text":"1","Type":"GuiCTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT004"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT005","Text":"Price","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/txtSEPM_PRODUCT_HEADER_200-PRICE","Text":"1.249,00","Type":"GuiTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT005"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-CURRENCY_CODE","Text":"EUR","Type":"GuiCTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT005"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT018","Text":"Currency","Type":"GuiLabel","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT005"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT007","Text":"Weight","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/txtSEPM_PRODUCT_HEADER_200-WEIGHT_MEASURE","Text":"4,500","Type":"GuiTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT007"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-WEIGHT_UNIT","Text":"KG","Type":"GuiCTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT007"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT016","Text":"Weight Unit","Type":"GuiLabel","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT007"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT008","Text":"Dimensions","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/ctxtSEPM_PRODUCT_HEADER_200-DIM_UNIT","Text":"CM","Type":"GuiCTextField","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT008"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT015","Text":"Length Unit","Type":"GuiLabel","LeftLabel":"/app/con[0]/ses[0]/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT008"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/txtSEPM_PRODUCT_HEADER_200-WIDTH","Text":"29","Type":"GuiTextField"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT009","Text":"Width","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/txtSEPM_PRODUCT_HEADER_200-DEPTH","Text":"17","Type":"GuiTextField"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT010","Text":"Depth","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/txtSEPM_PRODUCT_HEADER_200-HEIGHT","Text":"3,100","Type":"GuiTextField"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT011","Text":"Height","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/lbl%#AUTOTEXT019","Text":"Product URL","Type":"GuiLabel"}},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC1/ssubEPM_PRD_TAB_SCA:RS_EPM_PRODUCT_CLASSIC_DYNPRO:0301/txtSEPM_PRODUCT_HEADER_200-PRODUCT_PIC_URL","Text":"/sap/public/bc/NWDEMO_MODEL/IMAGES/HT-1001.jpg","Type":"GuiTextField"}}]}]},{"properties":{"Id":"/wnd[0]/usr/tabsEPM_PRD_TAB/tabpEPM_PRD_TAB_FC2","Text":"Conversion Factors","Type":"GuiTab"}}]}]}]}"'
+
+  # Step 3: Call AI Core to compare trees and return structured JSON result
+  - actions:
+      - type: api-request
+        method: POST
+        system_alias: AOKExtractAgent
+        path: /odata/v4/ai/completeJson
+        timeout: 45
+        headers:
+          Content-Type: "application/json"
+          Accept: "application/json"
+        body:
+          {"request": {
+            "prompt": "You are an expert in comparing UI tree structures from SAP GUI applications. Compare the ACTUAL UI tree against the REFERENCE UI tree.\n\nRules:\n- Compare each element by Id, Type, Text, Changeable, LeftLabel, Tooltip properties\n- COMPLETELY IGNORE any element whose Id contains 'PRODUCT_ID' or 'PRODUCT_HEADER_200-PRODUCT_ID'. This field has dynamic values (e.g. 'HT-12324' vs '*') and must NEVER be reported as a difference. Skip it entirely.\n- A mismatch means values are ACTUALLY DIFFERENT after trimming whitespace. If expected='Foo' and found='Foo', that is NOT a mismatch — skip it\n- Track: missing elements (in reference but not actual), extra elements (in actual but not reference), property mismatches (truly different values only)\n- Elements with short Ids like '.../lbl%#AUTOTEXT012' in the reference match full Ids in the actual tree that end with the same suffix\n\nReturn a flat JSON object with these exact keys:\n{\"status\":\"SAME or DIFFERENT\",\"summary\":\"one sentence summary\",\"totalElements\":\"N\",\"matched\":\"N\",\"mismatched\":\"N\",\"missingCount\":\"N\",\"extraCount\":\"N\",\"differences\":\"bullet point list of real differences or No differences found.\"}\n\nAll values MUST be strings. Return ONLY the JSON object, no markdown, no code blocks, no other text.\n\n--- ACTUAL UI TREE ---\n<? currentTree ?>\n\n--- REFERENCE UI TREE ---\n<? referenceTree ?>"
+          }}
+        result_variable: comparisonResponse
+      - type: set-variables
+        variables:
+          - name: comparison
+            value: <? comparisonResponse.body ?>
+      - type: message
+        message:
+          type: list
+          content:
+            title: "UI Tree Comparison"
+            total: 4
+            imageUrl: sap-icon://compare
+            imageStyle: avatar
+            subtitle: "<? comparison.summary ?>"
+            elements:
+              - title: "<? comparison.status ?>"
+                subtitle: "Vergleichsergebnis"
+                imageUrl: sap-icon://accept
+                imageStyle: avatar
+                sections:
+                  - title: "Details"
+                    attributes:
+                      - label: "Ergebnis"
+                        value: "<? comparison.status ?>"
+                      - label: "Zusammenfassung"
+                        value: "<? comparison.summary ?>"
+              - title: "Statistiken"
+                subtitle: "Element-Vergleich"
+                imageUrl: sap-icon://bar-chart
+                imageStyle: avatar
+                sections:
+                  - title: "Details"
+                    attributes:
+                      - label: "Gesamt"
+                        value: "<? comparison.totalElements ?>"
+                      - label: "Uebereinstimmend"
+                        value: "<? comparison.matched ?>"
+                      - label: "Abweichend"
+                        value: "<? comparison.mismatched ?>"
+                      - label: "Fehlend"
+                        value: "<? comparison.missingCount ?>"
+                      - label: "Zusaetzlich"
+                        value: "<? comparison.extraCount ?>"
+              - title: "Unterschiede"
+                subtitle: "Gefundene Abweichungen"
+                imageUrl: sap-icon://alert
+                imageStyle: avatar
+                sections:
+                  - title: "Details"
+                    attributes:
+                      - label: "Beschreibung"
+                        value: "<? comparison.differences ?>"
+              - title: "DescribeUI Output"
+                subtitle: "Rohdaten der UI-Beschreibung"
+                imageUrl: sap-icon://syntax
+                imageStyle: avatar
+                sections:
+                  - title: "Details"
+                    attributes:
+                      - label: "UI Tree"
+                        value: "<? currentTree ?>"
+
+result:
+  comparisonResult: <? comparisonResponse.body ?>

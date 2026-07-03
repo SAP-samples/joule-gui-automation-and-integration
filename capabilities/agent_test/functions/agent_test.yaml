@@ -1,0 +1,22 @@
+action_groups:
+  - actions:
+      - type: message
+        message:
+          type: text
+          markdown: true
+          content: "AGENT TEST START1"
+      - type: agent-request
+        name: agent_test_agent
+        body:
+          message: "Summarize the SAP GUI screen"
+        result_variable: agentResponse
+      - type: message
+        message: 
+          type: text
+          markdown: true
+          content: "<? agentResponse.body ?>"
+      - type: message
+        message:
+          type: text
+          markdown: true
+          content: "AGENT TEST END1"

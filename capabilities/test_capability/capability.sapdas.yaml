@@ -1,0 +1,8 @@
+schema_version: 3.29.0
+
+metadata:
+  namespace: com.sap.das.demo
+  name: test_capability
+  version: 1.0.0
+  display_name: "Test Capability"
+  description: A simple test capability that outputs HELLO WORLD in the chat.

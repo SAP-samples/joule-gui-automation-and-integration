@@ -1,0 +1,11 @@
+description: >
+  A simple test capability that outputs HELLO WORLD in the chat.
+
+title: Test Capability
+
+conversation_starter:
+  trigger_utterance: "test capability"
+
+target:
+  type: function
+  name: test_capability

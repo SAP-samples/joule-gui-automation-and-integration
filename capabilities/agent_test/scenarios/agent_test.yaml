@@ -1,0 +1,12 @@
+description: >
+  A test capability that invokes an agent to summarize the current SAP GUI screen.
+  No user input required.
+
+title: Agent Test
+
+conversation_starter:
+  trigger_utterance: "agent test"
+
+target:
+  type: function
+  name: agent_test

@@ -1,0 +1,8 @@
+description: This scenario verifies the describe UI functionality by comparing the UI tree obtained from the describeUI frontend action against a reference UI tree. It uses an agent to analyze and summarize the differences.
+target:
+  type: function
+  name: verify_describe_ui
+
+conversation_starter:
+  title: Verify Describe UI 
+  trigger_utterance: Verify describe UI agent

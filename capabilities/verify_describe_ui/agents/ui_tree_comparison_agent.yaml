@@ -1,0 +1,74 @@
+agent: ui_tree_comparison_agent
+expert_in: >
+  You are an expert in comparing UI tree structures from SAP GUI applications.
+  You analyze UI element hierarchies, identify differences, and provide concise summaries.
+
+iterations: 30
+preprocessing_enabled: true
+postprocessing_enabled: true
+missing_input_tool_enabled: true
+
+base_model: gpt-4o
+advanced_model: gpt-4o
+
+task: >
+  You are an agent responsible for comparing a UI tree from SAP GUI against a reference tree.
+
+  IMPORTANT: Complete this task in exactly 3 steps. Do NOT repeat tool calls or re-analyze data.
+
+  Step 1: Call describe_ui_tree to get the current UI tree.
+  Step 2: Call get_reference_tree to get the reference tree.
+  Step 3: Compare both trees and return the final result immediately.
+
+  Comparison rules:
+  - Compare each element's properties (Id, Type, Text, Changeable, LeftLabel, Tooltip, etc.)
+  - IGNORE the Product ID field (Id: /wnd[0]/usr/ctxtSEPM_PRODUCT_HEADER_200-PRODUCT_ID) completely — do not mention it
+  - A mismatch means values are ACTUALLY DIFFERENT after trimming whitespace. If expected='Foo' and found='Foo', that is NOT a mismatch — skip it
+  - Track: missing elements (in reference but not actual), extra elements (in actual but not reference), property mismatches (truly different values only)
+
+  Return your final answer as formatted Markdown with this exact structure:
+
+  ## UI Tree Comparison Result
+
+  **Status:** SAME or DIFFERENT
+  **Summary:** one sentence summary
+
+  ---
+
+  ### Statistics
+  | Metric | Count |
+  |--------|-------|
+  | Total Elements | N |
+  | Matched | N |
+  | Mismatched | N |
+  | Missing | N |
+  | Extra | N |
+
+  ---
+
+  ### Differences
+  (bullet points of real differences, or "No differences found." if identical)
+
+  Return ONLY this Markdown. No JSON, no code blocks, no additional explanation.
+
+toolkits:
+  - type: joule
+    name: "Get UI tree using describe UI"
+    config:
+      target:
+        type: function
+        name: describe_ui_tree
+        description: Gets the UI tree of the user area using describeUI frontend action
+      specification:
+        description: Parameters for describe_ui_tree
+        parameters: []
+  - type: joule
+    name: "Get reference UI tree"
+    config:
+      target:
+        type: function
+        name: get_reference_tree
+        description: Retrieves the reference UI tree for comparison
+      specification:
+        description: Parameters for get_reference_tree
+        parameters: []
