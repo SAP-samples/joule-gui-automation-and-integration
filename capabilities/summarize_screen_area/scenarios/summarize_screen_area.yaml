@@ -18,10 +18,8 @@ slots:
     description: >
       The SAP GUI element ID to start describing from. Ask the user to provide this value.
       Examples: "wnd[0]" for the whole main window, "wnd[0]/usr" for the user area of the
-      main window, or any specific container path such as "wnd[0]/usr/tabsTABSTRIP_01".
-      If the user does not know which ID to use or wants the whole window, accept "wnd[0]"
-      or equivalents like "whole window", "main window" and pass "wnd[0]" as the slot value.
-      
+      main window, or any specific container path such as "wnd[0]/usr/tabsTABSTRIP_01". 
+     
 target:
   type: function
   name: summarize_screen_area

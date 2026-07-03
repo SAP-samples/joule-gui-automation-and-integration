@@ -3,19 +3,12 @@ parameters:
     optional: false
 
 action_groups:
-  - actions:
-      - type: message
-        message:
-          type: text
-          content: "<? root_element_id ?>"
+  - actions:      
       - type: set-variables
         variables:
           - name: effective_root_id
             value: "<? root_element_id != null && root_element_id != '' ? root_element_id : 'wnd[0]' ?>"
-      - type: message
-        message:
-          type: text
-          content: "<? effective_root_id ?>"
+      
       - type: agent-request
         name: screen_area_summarizer
         body:
