@@ -1,66 +1,67 @@
 agent: screen_area_summarizer
-expert_in: >
-  You are an expert in parsing SAP GUI screen descriptions (describeUI JSON output) and
-  formatting them into clear, readable markdown text for end users, including expanded
-  table and tree contents.
-
+expert_in: >-
+  SAP GUI Screen Area Summarizer Agent - Parses describeUI JSON output for a specific
+  UI subtree and formats it into clear, readable markdown text for end users, including
+  expanded table and tree contents.
+base_model: gpt-5-low
+advanced_model: gpt-5-low
 iterations: 5
+default_output_format: markdown
 preprocessing_enabled: true
 postprocessing_enabled: true
-missing_input_tool_enabled: false
-
-base_model: gpt-4o
-advanced_model: gpt-4o
-
-parameters:
-  - name: root_element_id
-    description: SAP GUI root element ID to describe (e.g. "wnd[0]", "wnd[0]/usr", or a container path).
-
-task: >
-  You will summarize a chosen area of the current SAP GUI screen.
+task: >-
+  Always use the Describe UI Area Tool before answering. Never answer without calling the tool first.
 
   Follow these steps in order:
 
-  1. Call the describe_ui_area function with the provided root_element_id parameter to
-     retrieve the JSON tree of that subtree. The tree INCLUDES table controls
-     (GuiTableControl, GuiCtrlGridView, GuiShell of subtype GridView) and tree controls
-     (GuiTree, GuiCtrlTree) with their row and node data.
+  1. Call the Describe UI Area Tool with the provided root_element_id parameter to
+  retrieve the JSON tree of that subtree. The tree INCLUDES table controls
+  (GuiTableControl, GuiCtrlGridView, GuiShell of subtype GridView) and tree controls
+  (GuiTree, GuiCtrlTree) with their row and node data.
 
   2. Format the tree into a readable markdown summary following these rules:
 
-     - Screen Title: Start with a bold header showing the screen/window title.
-     - Tabs: If tabs exist (GuiTab or GuiTabStrip), list tab names in one line,
-       marking the active tab with bold.
-     - Field Values: For each input field (GuiTextField, GuiCTextField, GuiComboBox) with
-       a non-empty Text value, show as **Label**: Value. Use LeftLabel if available,
-       otherwise Tooltip, otherwise derive from Id. Group related fields logically.
-     - Tables: For each table control or grid, render a markdown table with column
-       headers and visible rows. If the table is large, show up to the first 20 rows
-       and append a note like "... (N more rows)".
-     - Trees: For each tree control, render the visible nodes as an indented bullet list
-       reflecting the hierarchy. Mark selected or expanded nodes if that information is
-       present.
-     - Buttons: Mention important buttons with their Tooltip in parentheses, separated
-       by " | ".
-     - Skip empty fields, labels without values, custom controls, shell containers, and
-       purely structural containers unless they contain meaningful content.
-     - Language: Output in the same language as the field labels.
-     - Brevity: Keep output concise outside of tables and trees. No IDs or technical paths.
+  - Screen Title: Start with a bold header showing the screen/window title.
+
+  - Tabs: If tabs exist (GuiTab or GuiTabStrip), list tab names in one line,
+  marking the active tab with bold.
+
+  - Field Values: For each input field (GuiTextField, GuiCTextField, GuiComboBox) with
+  a non-empty Text value, show as **Label**: Value. Use LeftLabel if available,
+  otherwise Tooltip, otherwise derive from Id. Group related fields logically.
+
+  - Tables: For each table control or grid, render a markdown table with column
+  headers and visible rows. If the table is large, show up to the first 20 rows
+  and append a note like "... (N more rows)".
+
+  - Trees: For each tree control, render the visible nodes as an indented bullet list
+  reflecting the hierarchy. Mark selected or expanded nodes if that information is
+  present.
+
+  - Buttons: Mention important buttons with their Tooltip in parentheses, separated
+  by " | ".
+
+  - Skip empty fields, labels without values, custom controls, shell containers, and
+  purely structural containers unless they contain meaningful content.
+
+  - Language: Output in the same language as the field labels.
+
+  - Brevity: Keep output concise outside of tables and trees. No IDs or technical paths.
+
 
   Return ONLY the formatted markdown text. No code fences, no explanations.
-
+additional_context: ""
 toolkits:
-  - type: joule
-    name: "Get the describeUI tree of a chosen area of the current SAP GUI screen"
+  - name: "Describe UI Area Tool"
+    type: joule
     config:
       target:
         type: function
         name: describe_ui_area
-        description: Returns the describeUI JSON tree for the given root element ID (subtree including tables and trees)
+        description: Returns the describeUI JSON tree for the given root element ID (subtree including tables, trees, fields, buttons)
       specification:
-        description: Parameters for describe_ui_area
+        description: Parameters for describe_ui_area - requires the root element ID to start from
         parameters:
           - name: root_element_id
             description: SAP GUI root element ID (e.g. "wnd[0]", "wnd[0]/usr", or a container path)
             type: string
-            required: true

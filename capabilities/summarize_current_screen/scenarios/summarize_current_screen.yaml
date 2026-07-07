@@ -1,9 +1,7 @@
 description: >
-  Produces a fast summary of the entire current SAP GUI screen using the describeUI
-  frontend action and formats it as readable markdown showing screen title, fields, values,
-  tabs, and buttons. No user input or root element ID is needed — the whole window is
-  captured automatically. Tables and tree contents are not expanded in this mode. Use this
-  when the user wants a quick, hands-off summary of what is currently visible.
+  Summarizes what is currently shown on the SAP GUI screen. Returns a readable overview
+  of the screen title, input fields with their values, active tabs, and available buttons.
+  No parameters needed — the user simply asks to summarize or describe the current screen.
 
 title: Summarize current screen
 

@@ -3,16 +3,15 @@ parameters:
     optional: false
 
 action_groups:
-  - actions:      
+  - actions:
       - type: set-variables
         variables:
           - name: effective_root_id
-            value: "<? root_element_id != null && root_element_id != '' ? root_element_id : 'wnd[0]' ?>"      
+            value: "<? root_element_id != null && root_element_id != '' ? root_element_id : 'wnd[0]' ?>"
       - type: agent-request
         name: screen_area_summarizer
-        body:
-          message: "Summarize the SAP GUI screen area"
-          root_element_id: <? effective_root_id ?>
+        body: >
+          { "message": "Summarize the SAP GUI screen area", "root_element_id": "<? effective_root_id ?>" }
         result_variable: agentResponse
       - type: message
         message:
