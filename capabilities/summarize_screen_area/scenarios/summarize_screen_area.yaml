@@ -1,10 +1,8 @@
 description: >
-  Summarizes a chosen UI area of the current SAP GUI screen, identified by a root element ID
-  provided by the user. Examples: "wnd[0]" for the whole window, "wnd[0]/usr" for the user
-  area, or any specific container path. The describeUI frontend action captures the selected
-  subtree including table rows and tree node hierarchies, and the result is rendered as
-  markdown with fields, tabs, buttons, expanded tables, and trees. Use this when the user
-  wants a targeted summary of a UI area and is willing to specify the root element ID.
+  Summarizes a specific area of the current SAP GUI screen identified by its element ID.
+  The user provides a root element ID such as "wnd[0]" for the whole window, "wnd[0]/usr"
+  for the main user area, or a specific container path. Returns a readable overview including
+  fields, values, tables with rows, tree hierarchies, tabs, and buttons for that area.
 
 title: Summarize screen area by root ID
 

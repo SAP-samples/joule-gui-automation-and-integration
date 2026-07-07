@@ -2,8 +2,8 @@ action_groups:
   - actions:
       - type: agent-request
         name: screen_summarizer
-        body:
-          message: "Summarize the SAP GUI screen"
+        body: >
+          { "message": "Summarize the SAP GUI screen" }
         result_variable: agentResponse
       - type: message
         message:

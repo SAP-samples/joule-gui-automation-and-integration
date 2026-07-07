@@ -2,7 +2,8 @@ schema_version: 1.4.0
 name: d043074_frontend_actions_2
 capabilities:
   - type: local
+    folder: ./execute_guided_script
+  - type: local
     folder: ./summarize_current_screen
-
-
-
+  - type: local
+    folder: ./summarize_screen_area

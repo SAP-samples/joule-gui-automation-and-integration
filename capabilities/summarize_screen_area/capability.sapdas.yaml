@@ -1,8 +1,8 @@
 schema_version: 3.29.0
 
 metadata:
-  namespace: com.sap.das.demo
+  namespace: joule.ext
   display_name: "Summarize screen area"
   name: summarize_screen_area
   version: 1.0.0
-  description: Summary of a chosen UI area of the current SAP GUI screen. The user provides a root element ID (e.g. wnd[0] for the whole window, wnd[0]/usr for the user area, or a specific container path) and the describeUI frontend action captures that subtree including table rows and tree node hierarchies, then renders it as readable markdown.
+  description: Summarizes a specific area of the current SAP GUI screen by element ID. The user provides a root element path and receives a readable overview including fields, tables, trees, tabs, and buttons for that area.
