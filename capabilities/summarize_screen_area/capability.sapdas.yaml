@@ -1,7 +1,7 @@
 schema_version: 3.29.0
 
 metadata:
-  namespace: joule.ext
+  namespace: com.sap.das.demo
   display_name: "Summarize screen area"
   name: summarize_screen_area
   version: 1.0.0

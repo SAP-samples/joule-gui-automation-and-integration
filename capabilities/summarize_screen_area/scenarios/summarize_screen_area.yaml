@@ -1,8 +1,8 @@
 description: >
-  Summarizes a specific area of the current SAP GUI screen identified by its element ID.
-  The user provides a root element ID such as "wnd[0]" for the whole window, "wnd[0]/usr"
-  for the main user area, or a specific container path. Returns a readable overview including
-  fields, values, tables with rows, tree hierarchies, tabs, and buttons for that area.
+  Summarizes a specific area of the current SAP GUI screen identified by a
+  user-supplied element ID. Returns a readable overview including fields, values,
+  tables with rows, tree hierarchies, tabs, and buttons for that area. The root
+  element ID must be provided by the user; there is no default.
 
 title: Summarize screen area by root ID
 
@@ -13,11 +13,8 @@ conversation_starter:
 
 slots:
   - name: root_element_id
-    description: >
-      The SAP GUI element ID to start describing from. Ask the user to provide this value.
-      Examples: "wnd[0]" for the whole main window, "wnd[0]/usr" for the user area of the
-      main window, or any specific container path such as "wnd[0]/usr/tabsTABSTRIP_01". 
-     
+    description: The SAP GUI element ID for the screen subtree to summarize.
+
 target:
   type: function
   name: summarize_screen_area
