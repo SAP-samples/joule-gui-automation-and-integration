@@ -135,6 +135,46 @@ To log on to the Joule bot you need an **SAP Identity Authentication Service (IA
 - 🆔 The IAS user is typically your **corporate e-mail address**
 - 🔑 The initial credentials and tenant URL are provided by your **Joule tenant administrator**
 
+### 🤖 Enable Custom Agent Deployment (Admin Center Consent)
+
+The `summarize_current_screen` and `summarize_screen_area` capabilities — and any capability that uses an `agent-request` to a content-based agent — require **explicit admin consent** before they can be deployed. Custom agents are currently a free promotional feature, so the Joule platform blocks their deployment until a tenant administrator opts in.
+
+Without consent, deployment does **not** fail with a compilation error — the capability is silently skipped with a warning:
+
+```
+Skipping deployment for capability: <name> includes a custom agent, which cannot be
+deployed without user consent. Please remove the agent or provide consent via Admin
+Center and try again.
+```
+
+To enable it:
+
+1. Open the **Joule Admin Center** (from the BTP subaccount where Joule is provisioned).
+2. Go to the **Joule Editor for Building Agents** tab.
+3. **Enable the consent** toggle for custom agent deployment.
+
+The deploying user also needs the correct Joule roles assigned in BTP (see the "Assign Roles" section of the Admin Center documentation). If deployment reports `User is not authorized to deploy sap capabilities`, check the role assignment as well.
+
+📘 [Joule Admin Center](https://help.sap.com/docs/joule/serviceguide/joule-admin-center)
+
+> ℹ️ `execute_guided_script` also contains an agent (`guided_script_validation_agent`), so this consent applies to that capability too.
+
+### 🏷️ Capability Namespace — `com.sap.das.demo` vs. `joule.ext`
+
+The sample capabilities in this repository ship with the namespace `com.sap.das.demo`, which is an SAP-owned demo namespace. This is fine for evaluating the samples on a demo/test tenant, but for **your own extensions on a customer tenant you should re-namespace the capabilities to `joule.ext`**:
+
+- **`joule.ext`** is the reserved namespace for **customer extensibility**. A user with the Joule **Extensibility role** can only create and update capabilities under `joule.ext.*` — this is the intended namespace for your own capabilities on a tenant you don't own SAP-namespace deploy rights for.
+- **`com.sap.das.demo`** (and other `com.sap.*` namespaces) are SAP-owned. Updating capabilities there requires the broader **Capability Developer + Admin** role and is not the right home for customer-authored content.
+
+To re-namespace, change the `namespace:` field in each `capability.sapdas.yaml`:
+
+```yaml
+capability:
+  namespace: joule.ext   # was: com.sap.das.demo
+```
+
+> ℹ️ A capability is matched for update by `namespace + name + version`, so keep the namespace consistent across re-deployments.
+
 ### 📚 Setup & Onboarding Guides
 
 - 📘 [General Onboarding Guide for Joule](https://help.sap.com/docs/joule/integrating-joule-with-sap/onboarding-joule?locale=en-US)
