@@ -7,7 +7,7 @@
 This repository collects sample [Joule](https://www.sap.com/products/artificial-intelligence/ai-assistant.html) capabilities that demonstrate two complementary integration patterns between Joule and the SAP Business Client / SAP GUI for Windows:
 
 - **Joule → SAP GUI automation:** Joule capabilities that drive an SAP GUI session through frontend actions (`executeScript`, `executeGuidedScript`, `describeUI`, ...) provided by the SAP Business Client.
-- **SAP Business Client → Joule integration:** Patterns for surfacing context from the running SAP GUI session back into Joule (transient context, UI tree inspection, content-based agents).
+- **SAP GUI → Joule integration:** Patterns for surfacing context from the running SAP GUI session back into Joule (transient context, UI tree inspection, content-based agents).
 
 The samples are intended as a starting point for SAP customers and partners building their own Joule capabilities on top of the SAP Business Client. They are **not** production-ready solutions and contain no customer-specific business logic.
 
@@ -95,12 +95,6 @@ https://github.com/user-attachments/assets/cfe5ee1f-63ae-4a68-9736-21b7b58e2f7b
 Joule automates end-to-end product creation in SAP GUI transaction (e.g. SEPM_PD) by filling in all required fields and saving the entry through guided GUI scripting.
 
 https://github.com/user-attachments/assets/65e0ae1e-9517-421b-9fe2-fff26d790760
-
-## 🚀 Discovery Center Mission
-
-Follow the guided mission on SAP Discovery Center for a step-by-step walkthrough of the setup and deployment:
-
-📘 [Automate SAP GUI Transactions with Joule Frontend Actions](https://discovery-center.cloud.sap/missiondetail/6117)
 
 ## 🎯 Business Goal
 
