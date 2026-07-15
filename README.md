@@ -7,7 +7,7 @@
 This repository collects sample [Joule](https://www.sap.com/products/artificial-intelligence/ai-assistant.html) capabilities that demonstrate two complementary integration patterns between Joule and the SAP Business Client / SAP GUI for Windows:
 
 - **Joule → SAP GUI automation:** Joule capabilities that drive an SAP GUI session through frontend actions (`executeScript`, `executeGuidedScript`, `describeUI`, ...) provided by the SAP Business Client.
-- **SAP Business Client → Joule integration:** Patterns for surfacing context from the running SAP GUI session back into Joule (transient context, UI tree inspection, validation agents).
+- **SAP GUI → Joule integration:** Patterns for surfacing context from the running SAP GUI session back into Joule (transient context, UI tree inspection, content-based agents).
 
 The samples are intended as a starting point for SAP customers and partners building their own Joule capabilities on top of the SAP Business Client. They are **not** production-ready solutions and contain no customer-specific business logic.
 
@@ -17,8 +17,6 @@ The samples are intended as a starting point for SAP customers and partners buil
 
 A guided-script sample that creates a product in transaction `SEPM_PD` (a publicly available training/demo transaction shipped with the EPM reference scenario). The script enters a randomly generated product ID, fills the Header Data fields, switches to the Conversion Factors tab and adds a row. Joule asks the user to confirm each server roundtrip before continuing, so users can review and adjust values at every step.
 
-After execution, the capability calls `describeUI` to read the current UI tree and a validation agent compares the result against the expected field values.
-
 **Trigger utterance:**
 
 > Create product
@@ -27,16 +25,12 @@ After execution, the capability calls `describeUI` to read the current UI tree a
 
 - `frontend-action` invocation of `com.sap.uic.unified.frontend.actions.executeGuidedScript`
 - `user-confirmation` action to gate long-running GUI scripts
-- `describeUI` frontend action for reading the current SAP GUI state
-- LLM-based agent (`guided_script_validation_agent`) using a Joule toolkit to call a dialog function and validate the result
 
 **Files:**
 
 - `capabilities/execute_guided_script/capability.sapdas.yaml`
 - `capabilities/execute_guided_script/scenarios/execute_guided_script.yaml`
 - `capabilities/execute_guided_script/functions/execute_guided_script.yaml`
-- `capabilities/execute_guided_script/functions/describe_ui_tree.yaml`
-- `capabilities/execute_guided_script/agents/guided_script_validation_agent.yaml`
 
 ### `summarize_current_screen` — Quick Screen Summary
 
@@ -88,11 +82,19 @@ Summarizes a chosen area of the SAP GUI screen by a user-provided root element I
 
 Further capabilities will be added over time.
 
-## 🚀 Discovery Center Mission
+## Demos
 
-Follow the guided mission on SAP Discovery Center for a step-by-step walkthrough of the setup and deployment:
+### Summarize Current Screen
 
-📘 [Automate SAP GUI Transactions with Joule Frontend Actions](https://discovery-center.cloud.sap/missiondetail/6117)
+Joule reads the entire SAP GUI screen and delivers a concise, structured summary of all visible fields, tables, and status information.
+
+https://github.com/user-attachments/assets/cfe5ee1f-63ae-4a68-9736-21b7b58e2f7b
+
+### Create Product (EPM Demo)
+
+Joule automates end-to-end product creation in SAP GUI transaction (e.g. SEPM_PD) by filling in all required fields and saving the entry through guided GUI scripting.
+
+https://github.com/user-attachments/assets/65e0ae1e-9517-421b-9fe2-fff26d790760
 
 ## 🎯 Business Goal
 
@@ -156,8 +158,6 @@ To enable it:
 The deploying user also needs the correct Joule roles assigned in BTP (see the "Assign Roles" section of the Admin Center documentation). If deployment reports `User is not authorized to deploy sap capabilities`, check the role assignment as well.
 
 📘 [Joule Admin Center](https://help.sap.com/docs/joule/serviceguide/joule-admin-center)
-
-> ℹ️ `execute_guided_script` also contains an agent (`guided_script_validation_agent`), so this consent applies to that capability too.
 
 ### 🏷️ Capability Namespace — `com.sap.das.demo` vs. `joule.ext`
 
