@@ -1,5 +1,9 @@
 # Joule GUI Automation and Integration — Sample Capabilities
 
+<p align="center">
+  <img src="docs/banner.png" alt="Joule and SAP GUI for Windows integration — an isometric illustration showing the Joule capability layer projected onto the SAP GUI layer" width="100%">
+</p>
+
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/joule-gui-automation-and-integration)](https://api.reuse.software/info/github.com/SAP-samples/joule-gui-automation-and-integration)
 
 ## Description
