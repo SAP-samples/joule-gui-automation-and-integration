@@ -1,4 +1,4 @@
-# Joule GUI Automation and Integration — Sample Capabilities
+# SAP Joule Integration for SAP GUI — Automation & Screen Intelligence Samples
 
 <p align="center">
   <img src="docs/banner.png" alt="Joule and SAP GUI for Windows integration — an isometric illustration showing the Joule capability layer projected onto the SAP GUI layer" width="100%">
