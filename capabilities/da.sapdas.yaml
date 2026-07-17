@@ -1,5 +1,5 @@
 schema_version: 1.4.0
-name: d043074_frontend_actions_2
+name: joule_gui_automation_samples
 capabilities:
   - type: local
     folder: ./execute_guided_script
