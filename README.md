@@ -210,7 +210,7 @@ Add under `<singleoptions>`:
 
 ```xml
 <enablejouleinsapgui>true</enablejouleinsapgui>
-<joulebotname>ufa_sapgui_test</joulebotname>
+<joulebotname>joule_gui_automation_samples</joulebotname>
 <joulewebclienturl>https://eu12-uiclassic.eu12.sapdas.cloud.sap/resources/public/webclient/bootstrap.js</joulewebclienturl>
 ```
 
