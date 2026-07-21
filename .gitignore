@@ -1,0 +1,4 @@
+# Build artifacts
+*.daar
+# Dependencies
+node_modules/
