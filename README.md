@@ -210,8 +210,8 @@ Add under `<singleoptions>`:
 
 ```xml
 <enablejouleinsapgui>true</enablejouleinsapgui>
-<joulebotname>&lt;your-joule-bot-name&gt;</joulebotname>
-<joulewebclienturl>https://&lt;your-joule-tenant-host&gt;/resources/public/webclient/bootstrap.js</joulewebclienturl>
+<joulebotname>your-joule-bot-name</joulebotname>
+<joulewebclienturl>https://your-joule-tenant-host/resources/public/webclient/bootstrap.js</joulewebclienturl>
 ```
 
 Change `TrackingPreventionLevel` to `None` under `<edgesettings>`:
