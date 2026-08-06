@@ -233,6 +233,10 @@ After completing the setup above and deploying a capability from this repository
 
 The real win: you can now apply this pattern to the next transaction yourself — turning Joule into a reusable automation layer over your existing SAP GUI for Windows landscape.
 
+## 📖 Further Reading
+
+- 📝 [Frontend Actions across SAP UI technologies — blog post by Andreas Kunz (SAP)](https://sap.stackenterprise.co/articles/85383) — companion read on how Frontend Actions are realized in other SAP UI technologies (SAP GUI for HTML, WebDynpro ABAP, Fiori/UI5). The samples in this repository focus on the SAP GUI for Windows / SAP Business Client side of the same generic Frontend Actions concept.
+
 ## Known Issues
 
 No known issues.
