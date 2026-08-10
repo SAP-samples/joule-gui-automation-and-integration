@@ -210,8 +210,8 @@ Add under `<singleoptions>`:
 
 ```xml
 <enablejouleinsapgui>true</enablejouleinsapgui>
-<joulebotname>joule_gui_automation_samples</joulebotname>
-<joulewebclienturl>https://eu12-uiclassic.eu12.sapdas.cloud.sap/resources/public/webclient/bootstrap.js</joulewebclienturl>
+<joulebotname>your-joule-bot-name</joulebotname>
+<joulewebclienturl>https://your-joule-tenant-host/resources/public/webclient/bootstrap.js</joulewebclienturl>
 ```
 
 Change `TrackingPreventionLevel` to `None` under `<edgesettings>`:
