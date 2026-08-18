@@ -15,6 +15,8 @@ This repository collects sample [Joule](https://www.sap.com/products/artificial-
 
 The samples are intended as a starting point for SAP customers and partners building their own Joule capabilities on top of the SAP Business Client. They are **not** production-ready solutions and contain no customer-specific business logic.
 
+> 🎓 We recommend taking a look at the Discovery Center mission **[Automate SAP GUI Transactions with Joule Frontend Actions](https://discovery-center.cloud.sap/missiondetail/6117/)**, which shows step by step how these capabilities can be cloned, deployed, and used.
+
 ## Capabilities
 
 ### `execute_guided_script` — Create a Product Step-by-Step
