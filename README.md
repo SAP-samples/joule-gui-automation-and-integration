@@ -184,6 +184,7 @@ capability:
 - 📘 [General Onboarding Guide for Joule](https://help.sap.com/docs/joule/integrating-joule-with-sap/onboarding-joule?locale=en-US)
 - 📗 [Joule for SAP S/4HANA Cloud Private Edition — Comprehensive Setup Guide](https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/joule-for-sap-s-4hana-cloud-private-edition-a-comprehensive-setup-guide/ba-p/13786453)
 - 🚀 [Activate Joule for SAP S/4HANA Private Cloud Edition (Discovery Center Mission)](https://discovery-center.cloud.sap/protected/index.html#/missiondetail/4729/5013/?tab=overview)
+- 🎓 [Automate SAP GUI Transactions with Joule Frontend Actions (Discovery Center Mission)](https://discovery-center.cloud.sap/missiondetail/6117/)
 
 ### 🗄️ Backend Requirements
 
